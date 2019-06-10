@@ -11,6 +11,7 @@ const fancytree = require("jquery.fancytree");
 require("jquery.fancytree/dist/modules/jquery.fancytree.edit");
 require("jquery.fancytree/dist/modules/jquery.fancytree.filter");
 require("jquery.fancytree/dist/modules/jquery.fancytree.dnd");
+require("jquery.fancytree/dist/modules/jquery.fancytree.dnd5");
 require("jquery.fancytree/dist/modules/jquery.fancytree.gridnav");
 require("jquery.fancytree/dist/modules/jquery.fancytree.multi");
 
