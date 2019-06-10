@@ -14,7 +14,7 @@
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-   
+    
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> 
     
@@ -31,22 +31,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset("dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
-    
+ 
 </head>
 <!-- sidebar-collapse to start collapsed, but then it hover opens under the content -->
 <body class="hold-transition sidebar-mini">
-
+    
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        {{-- <section class="content">
-            <!-- Your Page Content Here --> --}}
-            @yield('content')
-        {{-- </section><!-- /.content --> --}}
+        @yield('content')
     </div><!-- /.content-wrapper -->
-    
-
-    
+    @yield('footer')
 </body>
 </html>

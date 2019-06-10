@@ -4,9 +4,17 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
+require("./jquery-3.4.1.min.js");
 
-window.Vue = require('vue');
+const fancytree = require("jquery.fancytree");
+require("jquery.fancytree/dist/modules/jquery.fancytree.edit");
+require("jquery.fancytree/dist/modules/jquery.fancytree.filter");
+require("jquery.fancytree/dist/modules/jquery.fancytree.dnd");
+require("jquery.fancytree/dist/modules/jquery.fancytree.gridnav");
+require("jquery.fancytree/dist/modules/jquery.fancytree.multi");
+
+window.Vue = require("vue");
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +27,10 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    "example-component",
+    require("./components/ExampleComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,5 +39,5 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+    el: "#app"
 });

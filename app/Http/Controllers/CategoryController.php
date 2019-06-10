@@ -24,7 +24,24 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = category::get()->toTree();
+        $myJSON = json_encode($categories);
 
-        return view('categories.index', compact('categories'));
+        return view('categories.index', compact('categories', 'myJSON'));
+    }
+
+    public function fancyindex()
+    {
+        $categories = category::get()->toTree();
+        $myJSON = json_encode($categories);
+
+        return view('categories.fancyindex');
+    }
+
+    public function categoriesJSON()
+    {
+        $categories = category::get()->toTree();
+        $myJSON = json_encode($categories);
+
+        return $myJSON;
     }
 }
