@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoriesFormRequest;
 use App\Models\category;
+use App\Models\asset;
 
 class CategoryController extends Controller
 {
@@ -41,7 +42,7 @@ class CategoryController extends Controller
     {
         $categories = category::get()->toTree();
         $myJSON = json_encode($categories);
-
-        return $myJSON;
+        return ($categories);
     }
+
 }

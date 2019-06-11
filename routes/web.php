@@ -14,3 +14,5 @@ Route::get('/', 'CategoryController@index');
 Route::get('/categories', 'CategoryController@index');
 Route::get('/fancy', 'CategoryController@fancyindex');
 Route::get('/categories.json', 'CategoryController@categoriesJSON');
+Route::get('/assets.json', 'AssetController@assetsJSON');
+Route::get('/assetbyloc', 'AssetController@assetIndexByLocation');
