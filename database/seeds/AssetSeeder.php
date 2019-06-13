@@ -25,9 +25,9 @@ class AssetSeeder extends Seeder
             'category_id' => $fake->randomDigitNotNull,
             'barcodetype_id' => $fake->randomDigitNotNull,
             'status_id' => $fake->randomDigitNotNull,
-            'location_id' => $fake->randomDigitNotNull,
-            'room_id' => $fake->randomDigitNotNull,
-            'container_id' => $fake->randomDigitNotNull,
+            'location_id' => $location ?? $fake->randomDigitNotNull,
+            'room_id' => $room ?? $fake->randomDigitNotNull,
+            'container_id' => $container ?? $fake->randomDigitNotNull,
             'format_id' => $fake->randomNumber,
             'genre_id' => $fake->randomNumber,
             'country_id' => $fake->randomNumber,
@@ -51,7 +51,7 @@ class AssetSeeder extends Seeder
     {
         
         // Random not located assets
-        for ($i = 1; $i<=3; $i++){
+        for ($i = 1; $i<=9; $i++){
             $this->makeRandomLocatedAsset();
         }
         

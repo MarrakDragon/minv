@@ -3,13 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Kalnoy\Nestedset\NodeTrait;
 
-class category extends Model
+class LocationType extends Model
 {
 
-    use NodeTrait;
 
 
     /**
@@ -17,7 +14,7 @@ class category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'locationtypes';
 
     /**
      * The database primary key value.
@@ -33,11 +30,6 @@ class category extends Model
      */
     protected $fillable = [
         'name',
-        'description',
-        'categorytype_id',
-        '_lft',
-        '_rgt',
-        'parent_id'
     ];
 
     /**
@@ -78,8 +70,8 @@ class category extends Model
         return \DateTime::createFromFormat($this->getDateFormat(), $value)->format('j/n/Y g:i A');
     }
 
-    public function categorytype()
+    public function category()
     {
-        return $this->hasOne('App\Models\Category');
+        return $this->hasMany('App\Models\Location');
     }
 }

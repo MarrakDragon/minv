@@ -3,15 +3,15 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Helpers\Lists;
+use Http\Models\LocationType;
 
-class CreateCategoriesTable extends Migration
+class CreateLocationTypesTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'categories';
+    public $tableName = 'locationtypes';
 
     /**
      * Run the migrations.
@@ -20,15 +20,9 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create($this->tableName, function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name', 255)->nullable()->default(null);
-            $table->mediumText('description')->nullable()->default(null);
-
-            // Asset Type Info
-            $table->integer('categorytype_id')->default(0);
-
-            $table->nestedSet();
             $table->timestamps();
         });
     }
@@ -40,6 +34,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists($this->tableName);
     }
 }

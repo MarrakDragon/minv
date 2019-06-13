@@ -13,4 +13,9 @@ class Asset extends Model
     // Primary key setting
     public $primaryKey = 'id';
 
+    public function location()
+    {
+        return $this->hasOne('App\Models\Location');
+    }
+
 }

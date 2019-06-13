@@ -71,13 +71,15 @@ class CreateAssetsTable extends Migration
 
 
             // Relationships
-            $table->integer('image_id')->nullable()->default(null);             // Hero image
-            $table->integer('category_id')->nullable()->default(null);          // Category
-            $table->integer('barcodetype_id')->nullable()->default(null);      // Barcode type
-            $table->integer('status_id')->nullable()->default(null);            // Item status
+
             $table->integer('location_id')->nullable()->default(null);          // Location
             $table->integer('room_id')->nullable()->default(null);              // Room
             $table->integer('container_id')->nullable()->default(null);         // Container
+
+            $table->integer('image_id')->nullable()->default(null);             // Hero image
+            $table->integer('category_id')->nullable()->default(null);          // Category
+            $table->integer('barcodetype_id')->nullable()->default(null);        // Barcode type
+            $table->integer('status_id')->nullable()->default(null);            // Item status
             $table->integer('format_id')->nullable()->default(null);            // Book format
             $table->integer('genre_id')->nullable()->default(null);             // Book genre
             $table->integer('country_id')->nullable()->default(null);           // Book country

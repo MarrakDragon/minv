@@ -2,10 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
-use App\Helpers\Lists;
+use App\Models\CategoryType;
 
 class CategorySeeder extends Seeder
 { 
+
     /**
      * Run the database seeds.
      *
@@ -13,46 +14,48 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+        $categorytype = categorytype::all();
+
         $categories = [
             [
                 'name' => 'Books',
                 'description' => 'These are books',
-                'type' => lists::CATEGORY_TYPE_BOOK,
+                'categorytype_id' => $categorytype[0]->id,
                 'children' => [
                     [
                         'name' => 'Comic Book',
                         'description' => 'These are Comics',
                         'children' => [
-                            ['name' => 'Marvel Comic Book', 'description' => 'These are Marvel comics', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                            ['name' => 'DC Comic Book', 'description' => 'These are DC comics', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                            ['name' => 'Action comics', 'description' => 'These are Action comics', 'type' => lists::CATEGORY_TYPE_BOOK,],
+                            ['name' => 'Marvel Comic Book', 'description' => 'These are Marvel comics', 'categorytype_id' => $categorytype[0]->id],
+                            ['name' => 'DC Comic Book', 'description' => 'These are DC comics', 'categorytype_id' => $categorytype[0]->id],
+                            ['name' => 'Action comics', 'description' => 'These are Action comics', 'categorytype_id' => $categorytype[0]->id],
                         ],
                     ],
                     [
                         'name' => 'Textbooks',
                         'description' => 'School Books',
-                        'type' => lists::CATEGORY_TYPE_BOOK,
+                        'categorytype_id' => $categorytype[0]->id,
                         'children' => [
-                            ['name' => 'Business', 'description' => 'These are Biz texts', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                            ['name' => 'Finance', 'description' => 'These are Finance', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                            ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'type' => lists::CATEGORY_TYPE_BOOK,],
+                            ['name' => 'Business', 'description' => 'These are Biz texts', 'categorytype_id' => $categorytype[0]->id],
+                            ['name' => 'Finance', 'description' => 'These are Finance', 'categorytype_id' => $categorytype[0]->id],
+                            ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'categorytype_id' => $categorytype[0]->id],
                         ],
                     ],
                     [
                         'name' => 'Robins Books',
                         'description' => 'School Books',
-                        'type' => lists::CATEGORY_TYPE_BOOK,
+                        'categorytype_id' => $categorytype[0]->id,
                         'children' => [
-                            ['name' => 'Business', 'description' => 'These are Biz texts', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                            ['name' => 'Finance', 'description' => 'These are Finance', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                            ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'type' => lists::CATEGORY_TYPE_BOOK,], [
+                            ['name' => 'Business', 'description' => 'These are Biz texts', 'categorytype_id' => $categorytype[0]->id],
+                            ['name' => 'Finance', 'description' => 'These are Finance', 'categorytype_id' => $categorytype[0]->id],
+                            ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'categorytype_id' => $categorytype[0]->id], [
                                 'name' => 'Textbooks',
                                 'description' => 'School Books',
-                                'type' => lists::CATEGORY_TYPE_BOOK,
+                                'categorytype_id' => $categorytype[0]->id,
                                 'children' => [
-                                    ['name' => 'Business', 'description' => 'These are Biz texts', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                                    ['name' => 'Finance', 'description' => 'These are Finance', 'type' => lists::CATEGORY_TYPE_BOOK,],
-                                    ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'type' => lists::CATEGORY_TYPE_BOOK,],
+                                    ['name' => 'Business', 'description' => 'These are Biz texts', 'categorytype_id' => $categorytype[0]->id],
+                                    ['name' => 'Finance', 'description' => 'These are Finance', 'categorytype_id' => $categorytype[0]->id],
+                                    ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'categorytype_id' => $categorytype[0]->id],
                                 ],
                             ],
                         ],
@@ -62,25 +65,25 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Electronics',
                 'description' => 'Misc Electronics',
-                'type' => lists::CATEGORY_TYPE_ELECTRONICS,
+                'categorytype_id' => $categorytype[5]->id,
                 'children' => [
                     [
                         'name' => 'TV/Monitor',
                         'description' => 'Monitor or Television',
-                        'type' => lists::CATEGORY_TYPE_ELECTRONICS,
+                        'categorytype_id' => $categorytype[5]->id,
                         'children' => [
-                            ['name' => 'LED', 'description' => 'LED TV', 'type' => lists::CATEGORY_TYPE_ELECTRONICS,],
-                            ['name' => 'Monitor', 'description' => 'Monitor', 'type' => lists::CATEGORY_TYPE_ELECTRONICS,],
+                            ['name' => 'LED', 'description' => 'LED TV', 'categorytype_id' => $categorytype[5]->id],
+                            ['name' => 'Monitor', 'description' => 'Monitor', 'categorytype_id' => $categorytype[5]->id],
                         ],
                     ],
                     [
                         'name' => 'Phones',
                         'description' => 'Telephones',
-                        'type' => lists::CATEGORY_TYPE_ELECTRONICS,
+                        'categorytype_id' => $categorytype[5]->id,
                         'children' => [
-                            ['name' => 'Samsung', 'description' => 'Android', 'type' => lists::CATEGORY_TYPE_ELECTRONICS,],
-                            ['name' => 'iPhone', 'description' => 'iPhone', 'type' => lists::CATEGORY_TYPE_ELECTRONICS,],
-                            ['name' => 'Xiomi', 'description' => 'Other', 'type' => lists::CATEGORY_TYPE_ELECTRONICS,],
+                            ['name' => 'Samsung', 'description' => 'Android', 'categorytype_id' => $categorytype[5]->id],
+                            ['name' => 'iPhone', 'description' => 'iPhone', 'categorytype_id' => $categorytype[5]->id],
+                            ['name' => 'Xiomi', 'description' => 'Other', 'categorytype_id' => $categorytype[5]->id],
                         ],
                     ],
                 ],
@@ -89,5 +92,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             category::create($category);
         }
+  
     }
+    
 }

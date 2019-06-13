@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
-class category extends Model
+class Location extends Model
 {
 
     use NodeTrait;
@@ -17,7 +17,7 @@ class category extends Model
      *
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'locations';
 
     /**
      * The database primary key value.
@@ -34,7 +34,7 @@ class category extends Model
     protected $fillable = [
         'name',
         'description',
-        'categorytype_id',
+        'locationtype_id',
         '_lft',
         '_rgt',
         'parent_id'
@@ -80,6 +80,11 @@ class category extends Model
 
     public function categorytype()
     {
-        return $this->hasOne('App\Models\Category');
+        return $this->hasOne('App\Models\LocationType');
+    }
+
+    public function assets()
+    {
+        return $this->hasMany('App\Models\Asset');
     }
 }
