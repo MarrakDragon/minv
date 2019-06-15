@@ -25,7 +25,7 @@ class CreateLocationsTable extends Migration
             $table->mediumText('description')->nullable()->default(null);
 
             // Asset Type Info
-            $table->integer('locationtype_id')->default(0);
+            $table->integer('locationtype_id')->nullable()->default(null);
 
             $table->nestedSet();
             $table->timestamps();

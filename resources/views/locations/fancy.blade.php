@@ -4,11 +4,34 @@
   $("#tree").fancytree({
     checkbox: true,
     selectMode: 3,
-    extensions: ["dnd5"],
+    extensions: ["dnd5", "glyph"],
     source: {
       url: "http://minv.test/locations.json",
       cache: false
     },
+  types: {
+    "Country": {icon: "fas fa-globe-americas", iconTooltip: "Country type"},
+    "House": {icon: "fas fa-home", iconTooltip: "House"},
+  },
+  glyph: {
+    // The preset defines defaults for all supported icon types.
+    // It also defines a common class name that is prepended (in this case 'fa ')
+    preset: "awesome5",
+    map: {
+      // Override distinct default icons here
+      folder: "fas fa-folder",
+      folderOpen: "fas fa-folder-open"
+    }
+  },
+  icon: function(event, data) {
+    // data.typeInfo contains tree.types[node.type] (or {} if not found)
+    // Here we will return the specific icon for that type, or `undefined` if
+    // not type info is defined (in this case a default icon is displayed).
+    return data.typeInfo.icon;
+  },
+  iconTooltip: function(event, data) {
+     return data.typeInfo.iconTooltip;
+  },
   dnd5: {
         preventVoidMoves: true, // Prevent moving nodes 'before self', etc.
         preventRecursion: true, // Prevent dropping nodes on own descendants

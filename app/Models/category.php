@@ -80,6 +80,6 @@ class category extends Model
 
     public function categorytype()
     {
-        return $this->hasOne('App\Models\Category');
+        return $this->hasOne('App\Models\CategoryType');
     }
 }

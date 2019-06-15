@@ -17,5 +17,8 @@ class Asset extends Model
     {
         return $this->hasOne('App\Models\Location');
     }
-
+    public function category()
+    {
+        return $this->hasOne('App\Models\Category');
+    }
 }

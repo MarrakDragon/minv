@@ -70,7 +70,7 @@ class CategoryType extends Model
         return \DateTime::createFromFormat($this->getDateFormat(), $value)->format('j/n/Y g:i A');
     }
 
-    public function category()
+    public function categories()
     {
         return $this->hasMany('App\Models\Category');
     }

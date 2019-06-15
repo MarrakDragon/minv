@@ -26,7 +26,7 @@ class CreateCategoriesTable extends Migration
             $table->mediumText('description')->nullable()->default(null);
 
             // Asset Type Info
-            $table->integer('categorytype_id')->default(0);
+            $table->integer('categorytype_id')->nullable()->default(null);
 
             $table->nestedSet();
             $table->timestamps();

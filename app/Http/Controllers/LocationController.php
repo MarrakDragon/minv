@@ -40,8 +40,11 @@ class LocationController extends Controller
 
         $locs = location::get()->transform(function ($item, $tree) {
             $item['title'] = $item['name'];
+            $item['type'] = $item['locationtype']->name;
             return $item;
         })->ToTree();
+
+        // Loop through and annotate with folder flags, icons, etc. 
         $myJSON = json_encode($locs);
         return ($myJSON);
     }
