@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LocationsFormRequest;
+
 use App\Models\Location;
-use App\Models\asset;
-use App\Helpers\lists;
 
 class LocationController extends Controller
 {
@@ -32,59 +30,19 @@ class LocationController extends Controller
     }
 
 
-    public function fancyloc1()
+    public function fancy()
     {
-        return view('locations.fancyoldtree');
+        return view('locations.fancy');
     }
 
-    public function fancyloc2()
-    {
-        return view('locations.fancynewtree');
-    }
-
-    public function locationsJSONOldTree()
-    {
-        $tree = location::all()->toTree();
-
-        // return (var_dump($tree));
-
-        $myJSON = json_encode($tree);
-        return ($myJSON);
-    }
-
-    public function locationsJSONNewTreeold()
+    public function locationsJSON()
     {
 
-        $locations = location::all();
-        $tree = collect([]);
-        foreach ($locations as $location) {
-            //$tree->put($location['id'], collect(['id' => $location['id'], 'title' => $location['name']]));
-            $tree[] = collect(['id' => $location['id'], 'title' => $location['name']]);
-            foreach ($location['assets'] as $asset) {
-                //$tree[$location['id']]->put('children', collect(['id' => $asset->id, 'title' => $asset->name]));
-                $tree[]['children'] = collect(['id' => $asset->id, 'title' => $asset->name]);
-            }
-        }
-        //         sigh, get tree, loop through recursively fixing names
-        // return (var_dump($tree));
-        // $tree->groupBy();
-        // return (var_dump($tree));
-        $myJSON = json_encode($tree);
-        return ($myJSON);
-    }
-
-
-    public function locationsJSONNewTree()
-    {
-        $locations = location::all();
-        $locations->linkNodes();
-
-        // Fix titles
-        foreach ($locations as $location) {
-            $location['title'] = $location['name'];
-        }
-
-        $myJSON = json_encode($locations);
+        $locs = location::get()->transform(function ($item, $tree) {
+            $item['title'] = $item['name'];
+            return $item;
+        })->ToTree();
+        $myJSON = json_encode($locs);
         return ($myJSON);
     }
 }

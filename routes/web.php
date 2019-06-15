@@ -15,9 +15,7 @@ Route::get('/categories', 'CategoryController@index');
 Route::get('/fancy', 'CategoryController@fancyindex');
 Route::get('/categories.json', 'CategoryController@categoriesJSON');
 Route::get('/assets.json', 'AssetController@assetsJSON');
-Route::get('/assetbyloc', 'AssetController@assetIndexByLocation');
-Route::get('/test', 'CategoryController@tester');
-Route::get('/locationsoldtree.json', 'LocationController@locationsJSONOldTree');
-Route::get('/locationsnewtree.json', 'LocationController@locationsJSONNewTree');
-Route::get('/fancyloc1', 'LocationController@fancyloc1');
-Route::get('/fancyloc2', 'LocationController@fancyloc2');
+
+Route::get('/locations.json', 'LocationController@locationsJSON');
+Route::get('/locations', 'LocationController@fancy');
+    
