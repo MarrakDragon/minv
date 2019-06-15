@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\CategoryType;
-use App\Helpers\Lists;
 
 class CategoryTypeSeeder extends Seeder
-{ 
+{
     /**
      * Run the database seeds.
      *
@@ -23,12 +22,10 @@ class CategoryTypeSeeder extends Seeder
             ['name' => 'Location'],
             ['name' => 'Room'],
             ['name' => 'Other'],
-                
+
         ];
         foreach ($categorytypes as $categorytype) {
             categorytype::create($categorytype);
         }
-  
     }
-    
 }

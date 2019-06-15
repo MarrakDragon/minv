@@ -33,24 +33,21 @@ class CategoryController extends Controller
 
     public function fancyindex()
     {
-        $categories = category::get()->toTree();
-        $myJSON = json_encode($categories);
 
         return view('categories.fancyindex');
     }
 
+    public function repl($item, $key)
+    {
+        $item['title'] = $item['name'];
+        return $item;
+    }
     public function categoriesJSON()
     {
-        $categories = category::get()->toTree()->toArray();
-        $array = array_combine(
-            array_map(function ($key) {
-                if( $key === 'name' ) return 'title';
-            }, array_keys($categories)),
-            $categories
-        );
+        $cats = category::get()->transform(array($this, 'repl'))->ToTree();
 
-        $myJSON = json_encode($array);
-        return ($array);
+        $myJSON = json_encode($cats);
+        return ($myJSON);
     }
 
     public function tester()

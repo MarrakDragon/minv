@@ -6,7 +6,7 @@
     selectMode: 3,
     extensions: ["dnd5"],
     source: {
-      url: "http://minv.test/categories.json",
+      url: "http://minv.test/locationsoldtree.json",
       cache: false
     },
     dnd5: {
@@ -25,13 +25,6 @@
       $("#statusLine").text(
       event.type + ": " + data.node.isSelected() + " " + data.node
       );
-    },
-    postProcess: function(event, data) {
-      console.log(data.response);
-      data = $.map(data.response, function(c){
-        // Rename 'key' to 'id'
-        c.title = c.name;
-      });
     }
   });
   

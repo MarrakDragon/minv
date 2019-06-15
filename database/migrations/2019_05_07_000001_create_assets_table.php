@@ -73,8 +73,8 @@ class CreateAssetsTable extends Migration
             // Relationships
 
             $table->integer('location_id')->nullable()->default(null);          // Location
-            $table->integer('room_id')->nullable()->default(null);              // Room
-            $table->integer('container_id')->nullable()->default(null);         // Container
+            // $table->integer('room_id')->nullable()->default(null);              // Room
+            // $table->integer('container_id')->nullable()->default(null);         // Container
 
             $table->integer('image_id')->nullable()->default(null);             // Hero image
             $table->integer('category_id')->nullable()->default(null);          // Category

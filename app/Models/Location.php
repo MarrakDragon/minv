@@ -78,7 +78,7 @@ class Location extends Model
         return \DateTime::createFromFormat($this->getDateFormat(), $value)->format('j/n/Y g:i A');
     }
 
-    public function categorytype()
+    public function locationType()
     {
         return $this->hasOne('App\Models\LocationType');
     }

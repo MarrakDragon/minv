@@ -31,103 +31,60 @@ class LocationController extends Controller
         return view('locations.index', compact('locations', 'myJSON'));
     }
 
-    public function fancyindex()
+
+    public function fancyloc1()
     {
-        $locations = location::get()->toTree();
+        return view('locations.fancyoldtree');
+    }
+
+    public function fancyloc2()
+    {
+        return view('locations.fancynewtree');
+    }
+
+    public function locationsJSONOldTree()
+    {
+        $tree = location::all()->toTree();
+
+        // return (var_dump($tree));
+
+        $myJSON = json_encode($tree);
+        return ($myJSON);
+    }
+
+    public function locationsJSONNewTreeold()
+    {
+
+        $locations = location::all();
+        $tree = collect([]);
+        foreach ($locations as $location) {
+            //$tree->put($location['id'], collect(['id' => $location['id'], 'title' => $location['name']]));
+            $tree[] = collect(['id' => $location['id'], 'title' => $location['name']]);
+            foreach ($location['assets'] as $asset) {
+                //$tree[$location['id']]->put('children', collect(['id' => $asset->id, 'title' => $asset->name]));
+                $tree[]['children'] = collect(['id' => $asset->id, 'title' => $asset->name]);
+            }
+        }
+        //         sigh, get tree, loop through recursively fixing names
+        // return (var_dump($tree));
+        // $tree->groupBy();
+        // return (var_dump($tree));
+        $myJSON = json_encode($tree);
+        return ($myJSON);
+    }
+
+
+    public function locationsJSONNewTree()
+    {
+        $locations = location::all();
+        $locations->linkNodes();
+
+        // Fix titles
+        foreach ($locations as $location) {
+            $location['title'] = $location['name'];
+        }
+
         $myJSON = json_encode($locations);
-
-        return view('locations.fancyindex');
-    }
-
-    public function locationsJSON()
-    {
-        $locations = location::get()->toTree()->toArray();
-        $array = array_combine(
-            array_map(function ($key) {
-                if( $key === 'name' ) return 'title';
-            }, array_keys($locations)),
-            $locations
-        );
-
-        $myJSON = json_encode($array);
-        return ($array);
-    }
-
-    public function tester()
-    {
-        $locations = [
-            [
-                'name' => 'Books',
-                'description' => 'These are books',
-                'type' => lists::location_TYPE_BOOK,
-                'children' => [
-                    [
-                        'name' => 'Comic Book',
-                        'description' => 'These are Comics',
-                        'children' => [
-                            ['name' => 'Marvel Comic Book', 'description' => 'These are Marvel comics', 'type' => lists::location_TYPE_BOOK,],
-                            ['name' => 'DC Comic Book', 'description' => 'These are DC comics', 'type' => lists::location_TYPE_BOOK,],
-                            ['name' => 'Action comics', 'description' => 'These are Action comics', 'type' => lists::location_TYPE_BOOK,],
-                        ],
-                    ],
-                    [
-                        'name' => 'Textbooks',
-                        'description' => 'School Books',
-                        'type' => lists::location_TYPE_BOOK,
-                        'children' => [
-                            ['name' => 'Business', 'description' => 'These are Biz texts', 'type' => lists::location_TYPE_BOOK,],
-                            ['name' => 'Finance', 'description' => 'These are Finance', 'type' => lists::location_TYPE_BOOK,],
-                            ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'type' => lists::location_TYPE_BOOK,],
-                        ],
-                    ],
-                    [
-                        'name' => 'Robins Books',
-                        'description' => 'School Books',
-                        'type' => lists::location_TYPE_BOOK,
-                        'children' => [
-                            ['name' => 'Business', 'description' => 'These are Biz texts', 'type' => lists::location_TYPE_BOOK,],
-                            ['name' => 'Finance', 'description' => 'These are Finance', 'type' => lists::location_TYPE_BOOK,],
-                            ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'type' => lists::location_TYPE_BOOK,], [
-                                'name' => 'Textbooks',
-                                'description' => 'School Books',
-                                'type' => lists::location_TYPE_BOOK,
-                                'children' => [
-                                    ['name' => 'Business', 'description' => 'These are Biz texts', 'type' => lists::location_TYPE_BOOK,],
-                                    ['name' => 'Finance', 'description' => 'These are Finance', 'type' => lists::location_TYPE_BOOK,],
-                                    ['name' => 'Computer Science', 'description' => 'These are Comp Sci', 'type' => lists::location_TYPE_BOOK,],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Electronics',
-                'description' => 'Misc Electronics',
-                'type' => lists::location_TYPE_ELECTRONICS,
-                'children' => [
-                    [
-                        'name' => 'TV/Monitor',
-                        'description' => 'Monitor or Television',
-                        'type' => lists::location_TYPE_ELECTRONICS,
-                        'children' => [
-                            ['name' => 'LED', 'description' => 'LED TV', 'type' => lists::location_TYPE_ELECTRONICS,],
-                            ['name' => 'Monitor', 'description' => 'Monitor', 'type' => lists::location_TYPE_ELECTRONICS,],
-                        ],
-                    ],
-                    [
-                        'name' => 'Phones',
-                        'description' => 'Telephones',
-                        'type' => lists::location_TYPE_ELECTRONICS,
-                        'children' => [
-                            ['name' => 'Samsung', 'description' => 'Android', 'type' => lists::location_TYPE_ELECTRONICS,],
-                            ['name' => 'iPhone', 'description' => 'iPhone', 'type' => lists::location_TYPE_ELECTRONICS,],
-                            ['name' => 'Xiomi', 'description' => 'Other', 'type' => lists::location_TYPE_ELECTRONICS,],
-                        ],
-                    ],
-                ],
-            ],
-        ];
-        dd($locations);
+        return ($myJSON);
     }
 }
