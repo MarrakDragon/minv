@@ -16,6 +16,7 @@ require("jquery.fancytree/dist/modules/jquery.fancytree.gridnav");
 require("jquery.fancytree/dist/modules/jquery.fancytree.multi");
 require("jquery.fancytree/dist/modules/jquery.fancytree.glyph");
 require("jquery.fancytree/dist/modules/jquery.fancytree.wide");
+require("jquery.fancytree/dist/modules/jquery.fancytree.childcounter");
 
 window.Vue = require("vue");
 

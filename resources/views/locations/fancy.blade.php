@@ -2,11 +2,12 @@
 @section('footer')
 <script type="text/javascript">
 
+
   $("#tree").fancytree({
     checkbox: true,
     selectMode: 3,
-     extensions: ["dnd5", "wide"],
-   
+    extensions: ["dnd5", "wide"], //, "childcounter"],
+    
     tooltip: true , 
     source: {
       url: "http://minv.test/locations.json",
@@ -16,7 +17,11 @@
       "Country": {icon: "fas fa-globe-americas", iconTooltip: "Country type"},
       "House": {icon: "fas fa-home", iconTooltip: "House"},
     },
-    
+    childcounter: {
+      deep: true,
+      hideZeros: true,
+      hideExpanded: true
+    },
     icon: function(event, data) {
       // data.typeInfo contains tree.types[node.type] (or {} if not found)
       // Here we will return the specific icon for that type, or `undefined` if
@@ -70,7 +75,8 @@
     }
   });
   
-  
+    
+$(".fancytree-container").toggleClass("fancytree-connectors");
   $(function(){
     $("#btnExpandAll").click(function(){
       $("#tree").fancytree("getTree").visit(function(node){
@@ -93,23 +99,23 @@
 @endsection
 @section('content')
 <div class="container">
-<div class="panel panel-default">
-  <p>
-    Font size: <span id="curSize"></span>
-    <input id="fontSize" type="number" min="4" max="48" value="10"> pt
-  </p>
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <b>Locations</b>
-    </div>
-    <div id="tree" class="panel-body fancytree-colorize-hover fancytree-fade-expander">
-    </div>
-    <div class="panel-footer">
-      <button id="btnExpandAll" class="btn btn-xs btn-primary">Expand all</button>
-      <button id="btnCollapseAll" class="btn btn-xs btn-warning">Collapse all</button>
+    <p>
+      Font size: <span id="curSize"></span>
+      <input id="fontSize" type="number" min="4" max="48" value="10"> pt
+    </p>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b>Locations</b>
+      </div>
+      <div id="tree" class="panel-body fancytree-colorize-hover fancytree-fade-expander">
+      </div>
+      <div class="panel-footer">
+        <button id="btnExpandAll" class="btn btn-xs btn-primary">Expand all</button>
+        <button id="btnCollapseAll" class="btn btn-xs btn-warning">Collapse all</button>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 @endsection
