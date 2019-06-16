@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('footer')
 <script type="text/javascript">
-
-
+  
+  
   $("#tree").fancytree({
     checkbox: true,
     selectMode: 3,
     extensions: ["dnd5", "wide"], //, "childcounter"],
-    
+    activeVisible: true,
     tooltip: true , 
     source: {
       url: "http://minv.test/locations.json",
@@ -16,6 +16,13 @@
     types: {
       "Country": {icon: "fas fa-globe-americas", iconTooltip: "Country type"},
       "House": {icon: "fas fa-home", iconTooltip: "House"},
+      "None": {icon: "fas fa-ban", iconTooltip: "No location"},
+      "Office": {icon: "far fa-building", iconTooltip: "House"},
+      "Warehouse": {icon: " fas fa-warehouse", iconTooltip: "Warehouse"},
+      "Room": {icon: "fas fa-door-open", iconTooltip: "Room"},
+      "Container": {icon: "fas fa-box", iconTooltip: "Container"},
+      "Shed": {icon: "fas fa-home", iconTooltip: "Shed"},
+      "Box": {icon: "fas fa-box-open", iconTooltip: "Boxes"},
     },
     childcounter: {
       deep: true,
@@ -50,7 +57,7 @@
         data.effectAllowed = "all";
         data.dropEffect = data.dropEffectSuggested; 
         //data.dropEffect = "copy";
-        data.dropEffect = "move";
+        //data.dropEffect = "move";
         return true;
       },
       dragEnter: function(node, data) {
@@ -75,8 +82,10 @@
     }
   });
   
-    
-$(".fancytree-container").toggleClass("fancytree-connectors");
+  // Turn on connectors
+  
+  //  $(".fancytree-container").toggleClass("fancytree-connectors");
+  
   $(function(){
     $("#btnExpandAll").click(function(){
       $("#tree").fancytree("getTree").visit(function(node){
@@ -93,6 +102,20 @@ $(".fancytree-container").toggleClass("fancytree-connectors");
       $("#tree .fancytree-container").css("font-size", $(this).prop("value") + "pt");
     });//.prop("value", 12);
     
+    $("#btnSelectAll").click(function(){
+      $("#tree").fancytree("getTree").visit(function(node){
+        node.setSelected(true);
+      });
+      return false;
+    });
+
+    $("#btnDeSelectAll").click(function(){
+      $("#tree").fancytree("getTree").visit(function(node){
+        node.setSelected(false);
+      });
+      return false;
+    });
+
   });
   
 </script>
@@ -113,6 +136,8 @@ $(".fancytree-container").toggleClass("fancytree-connectors");
       <div class="panel-footer">
         <button id="btnExpandAll" class="btn btn-xs btn-primary">Expand all</button>
         <button id="btnCollapseAll" class="btn btn-xs btn-warning">Collapse all</button>
+        <button id="btnSelectAll" class="btn btn-xs btn-primary">Select all</button>
+        <button id="btnDeSelectAll" class="btn btn-xs btn-warning">Deselect all</button>
       </div>
     </div>
   </div>

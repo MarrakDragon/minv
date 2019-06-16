@@ -14,6 +14,7 @@ class LocationSeeder extends Seeder
 
     public function run()
     {
+
         $locationType = locationtype::all();
         $locations = [
             [
@@ -29,6 +30,7 @@ class LocationSeeder extends Seeder
                             ['name' => 'Garage', 'description' => 'Garage desc', 'locationtype_id' => $locationType[5]->id],
                             ['name' => 'Family ROom', 'description' => 'Family Room desc', 'locationtype_id'  => $locationType[5]->id],
                             ['name' => 'Master Bed', 'description' => 'Master Bedroom', 'locationtype_id' => $locationType[5]->id],
+                            ['name' => 'Work Office', 'description' => 'Work', 'locationtype_id' => $locationType[3]->id],
                         ],
                     ],
                     [
@@ -41,6 +43,7 @@ class LocationSeeder extends Seeder
                             ['name' => 'Master Bed', 'description' => 'Master Bedroom', 'locationtype_id' => $locationType[5]->id],
                         ],
                     ],
+
                 ],
             ],
             [
@@ -65,6 +68,18 @@ class LocationSeeder extends Seeder
                             ['name' => 'Garage', 'description' => 'Garage desc', 'locationtype_id' => $locationType[5]->id],
                             ['name' => 'Family ROom', 'description' => 'Family Room desc', 'locationtype_id'  => $locationType[5]->id],
                             ['name' => 'Master Bed', 'description' => 'Master Bedroom', 'locationtype_id' => $locationType[5]->id],
+                        ],
+                    ],
+                    [
+                        'name' => 'Grandma House 2',
+                        'description' => 'Ohio house',
+                        'locationtype_id'  => $locationType[2]->id,
+                        'children' => [
+                            ['name' => 'Garage', 'description' => 'Garage desc', 'locationtype_id' => $locationType[5]->id],
+                            ['name' => 'Family ROom', 'description' => 'Family Room desc', 'locationtype_id'  => $locationType[5]->id],
+                            ['name' => 'Container', 'description' => 'Box', 'locationtype_id' => $locationType[6]->id],
+                            ['name' => 'Shed', 'description' => 'Shed', 'locationtype_id' => $locationType[7]->id],
+                            ['name' => 'Box', 'description' => 'Box', 'locationtype_id' => $locationType[8]->id],
                         ],
                     ],
                 ],

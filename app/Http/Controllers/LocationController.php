@@ -39,7 +39,7 @@ class LocationController extends Controller
     {
 
         $locs = location::get()->transform(function ($item, $tree) {
-            $item['title'] = $item['name'];
+            $item['title'] = $item['name'] . ' ' . count($item['assets']);
             $item['type'] = $item['locationtype']->name;
             return $item;
         })->ToTree();

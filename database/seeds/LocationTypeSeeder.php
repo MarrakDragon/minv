@@ -5,7 +5,7 @@ use App\Models\LocationType;
 use App\Helpers\Lists;
 
 class LocationTypeSeeder extends Seeder
-{ 
+{
     /**
      * Run the database seeds.
      *
@@ -22,13 +22,11 @@ class LocationTypeSeeder extends Seeder
             ['name' => 'Room'],
             ['name' => 'Container'],
             ['name' => 'Shed'],
-            ['name' => 'Room'],
-                
+            ['name' => 'Box'],
+
         ];
         foreach ($locationtypes as $locationtype) {
             locationtype::create($locationtype);
         }
-  
     }
-    
 }
