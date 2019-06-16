@@ -1,23 +1,12 @@
 @extends('layouts.app')
 @section('footer')
 <script type="text/javascript">
-  
-  var glyph_opts =  {
-    // The preset defines defaults for all supported icon types.
-    // It also defines a common class name that is prepended (in this case 'fa ')
-    preset: "awesome5",
-    map: {
-      // Override distinct default icons here
-      folder: "fas fa-folder",
-      folderOpen: "fas fa-folder-open",
-      dropMarker: "fas fa-folder-open"//fa-long-arrow-alt-right",
-    }
-  };
-  
+
   $("#tree").fancytree({
     checkbox: true,
     selectMode: 3,
-    extensions: ["dnd5", "glyph", "wide"],
+     extensions: ["dnd5", "wide"],
+   
     tooltip: true , 
     source: {
       url: "http://minv.test/locations.json",
@@ -27,7 +16,6 @@
       "Country": {icon: "fas fa-globe-americas", iconTooltip: "Country type"},
       "House": {icon: "fas fa-home", iconTooltip: "House"},
     },
-    glyph:glyph_opts,
     
     icon: function(event, data) {
       // data.typeInfo contains tree.types[node.type] (or {} if not found)
@@ -55,7 +43,7 @@
       dragStart: function(node, data) {
         // allow dragging `node`:
         data.effectAllowed = "all";
-                data.dropEffect = data.dropEffectSuggested; 
+        data.dropEffect = data.dropEffectSuggested; 
         //data.dropEffect = "copy";
         data.dropEffect = "move";
         return true;
@@ -64,7 +52,7 @@
         return true;
       },
       dragOver: function(node, data) {
-
+        
         return true;
         
       },
@@ -75,54 +63,54 @@
         /* This function MUST be defined to enable dropping of items on
         * the tree.
         */         
-         data.otherNode.moveTo(node, data.hitMode);
-
-          node.setExpanded();
-        }
+        data.otherNode.moveTo(node, data.hitMode);
+        
+        node.setExpanded();
       }
+    }
+  });
+  
+  
+  $(function(){
+    $("#btnExpandAll").click(function(){
+      $("#tree").fancytree("getTree").visit(function(node){
+        node.setExpanded(true);
+      });
+    });
+    $("#btnCollapseAll").click(function(){
+      $("#tree").fancytree("getTree").visit(function(node){
+        node.setExpanded(false);
+      });
     });
     
+    $( "#fontSize" ).change(function(){
+      $("#tree .fancytree-container").css("font-size", $(this).prop("value") + "pt");
+    });//.prop("value", 12);
     
-    $(function(){
-      $("#btnExpandAll").click(function(){
-        $("#tree").fancytree("getTree").visit(function(node){
-          node.setExpanded(true);
-        });
-      });
-      $("#btnCollapseAll").click(function(){
-        $("#tree").fancytree("getTree").visit(function(node){
-          node.setExpanded(false);
-        });
-      });
-      
-      $( "#fontSize" ).change(function(){
-        $("#tree .fancytree-container").css("font-size", $(this).prop("value") + "pt");
-      });//.prop("value", 12);
-      
-    });
-    
-  </script>
-  @endsection
-  @section('content')
-
+  });
+  
+</script>
+@endsection
+@section('content')
+<div class="container">
+<div class="panel panel-default">
+  <p>
+    Font size: <span id="curSize"></span>
+    <input id="fontSize" type="number" min="4" max="48" value="10"> pt
+  </p>
   <div class="panel panel-default">
-    <p>
-      Font size: <span id="curSize"></span>
-      <input id="fontSize" type="number" min="4" max="48" value="10"> pt
-    </p>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <b>list</b>
-      </div>
-      <div id="tree" class="panel-body fancytree-colorize-hover fancytree-fade-expander">
-      </div>
-      <div class="panel-footer">
-        <button id="btnExpandAll" class="btn btn-xs btn-primary">Expand all</button>
-        <button id="btnCollapseAll" class="btn btn-xs btn-warning">Collapse all</button>
-      </div>
+    <div class="panel-heading">
+      <b>Locations</b>
+    </div>
+    <div id="tree" class="panel-body fancytree-colorize-hover fancytree-fade-expander">
+    </div>
+    <div class="panel-footer">
+      <button id="btnExpandAll" class="btn btn-xs btn-primary">Expand all</button>
+      <button id="btnCollapseAll" class="btn btn-xs btn-warning">Collapse all</button>
     </div>
   </div>
-  
-  @endsection
-  
-  
+</div>
+</div>
+
+@endsection
+
