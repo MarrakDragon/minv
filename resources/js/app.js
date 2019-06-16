@@ -5,7 +5,7 @@
  */
 
 require("./bootstrap");
-require("./jquery-3.4.1.min.js");
+// jquery and jquery-ui both in bootstrap
 
 const fancytree = require("jquery.fancytree");
 require("jquery.fancytree/dist/modules/jquery.fancytree.edit");
@@ -15,6 +15,7 @@ require("jquery.fancytree/dist/modules/jquery.fancytree.dnd5");
 require("jquery.fancytree/dist/modules/jquery.fancytree.gridnav");
 require("jquery.fancytree/dist/modules/jquery.fancytree.multi");
 require("jquery.fancytree/dist/modules/jquery.fancytree.glyph");
+require("jquery.fancytree/dist/modules/jquery.fancytree.wide");
 
 window.Vue = require("vue");
 

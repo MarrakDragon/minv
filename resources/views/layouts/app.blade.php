@@ -16,8 +16,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
     
     <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script> 
-    
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>  --}}
+
     <!-- icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
@@ -28,13 +28,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" type="text/css">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"> --}}
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
- 
+    <link href="{{ asset('css/skin-bootstrap/ui.fancytree.css') }}" rel="stylesheet">
 </head>
 <!-- sidebar-collapse to start collapsed, but then it hover opens under the content -->
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini font-size:200%">
     
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
